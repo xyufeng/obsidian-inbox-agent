@@ -10,9 +10,41 @@ A Claude Code skill for triaging and classifying markdown notes in an Obsidian i
 
 ## Installation
 
-Copy the `.claude` folder and `CLAUDE.md` to your project root.
+Copy the `.claude` folder and `CLAUDE.md` to your Obsidian vault root.
+
+For automated processing, also copy the Python agent files.
+
+### Dependencies
+
+```bash
+pip install anthropic watchdog
+```
+
+Set your Anthropic API key:
+```bash
+export ANTHROPIC_API_KEY=your-key-here
+```
 
 ## Usage
+
+### Option 1: Automated Agent (Recommended)
+
+**Watch mode** - Auto-process new files:
+```bash
+python3 inbox-agent.py --watch
+```
+
+**One-time processing:**
+```bash
+python3 inbox-agent.py
+```
+
+**Dry-run (preview):**
+```bash
+python3 inbox-agent.py --dry-run
+```
+
+### Option 2: Claude Code Slash Commands
 
 ### Triage Inbox
 
@@ -65,6 +97,17 @@ created: 2026-02-16
 status: inbox
 ---
 ```
+
+## Files
+
+| File | Description |
+|------|-------------|
+| `.claude/skills/inbox-classifier.md` | Classification rules and logic |
+| `.claude/commands/triage-inbox.md` | Slash command for processing |
+| `.claude/commands/triage-inbox-dry-run.md` | Preview slash command |
+| `inbox-agent.py` | Automated Python agent with file watching |
+| `inbox-watcher.sh` | Shell-based file watcher (requires fswatch) |
+| `triage-inbox.sh` | Batch processing shell script |
 
 ## License
 
